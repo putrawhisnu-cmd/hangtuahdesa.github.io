@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hang Tuah Kopi & Toastery – Your Urban Kopitiam</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-user-select:none;user-select:none}
+:root{
+  --red:#C0392B;--red-dark:#922B21;--red-deep:#6E1A12;
+  --gold:#D4A017;--gold-light:#F0C040;
+  --cream:#FDF6EC;--cream-dark:#F5E6CE;
+  --brown:#3B1F0E;--brown-mid:#7A4020;--brown-light:#C07840;
+  --green:#1A5C2A;--teal:#0E6655;
+  --text:#1A0A04;--text-muted:#6B3A20;
+  --white:#FFFFFF;--dark:#120800;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Georgia',serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;z-index:999;background:rgba(253,246,236,0.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(192,57,43,0.15);padding:0 5%}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{display:flex;flex-direction:column;text-decoration:none}
+.nav-logo-main{font-size:1.15rem;font-weight:700;color:var(--red-dark);letter-spacing:0.04em;line-height:1}
+.nav-logo-sub{font-family:Arial,sans-serif;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--brown-light);margin-top:2px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text-muted);font-family:Arial,sans-serif;font-size:0.82rem;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{background:var(--red)!important;color:var(--white)!important;padding:8px 20px;border-radius:40px;transition:background 0.2s!important}
+.nav-cta:hover{background:var(--red-dark)!important}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5% 60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,var(--dark) 0%,var(--red-deep) 45%,#8B2500 100%)}
+/* Batik-inspired decorative overlay */
+.hero-deco{position:absolute;inset:0;opacity:0.07;background-image:
+  radial-gradient(circle at 20% 30%, rgba(212,160,23,1) 1px, transparent 1px),
+  radial-gradient(circle at 80% 70%, rgba(212,160,23,1) 1px, transparent 1px),
+  radial-gradient(circle at 50% 50%, rgba(212,160,23,0.5) 1px, transparent 1px);
+  background-size:40px 40px, 60px 60px, 80px 80px}
+.hero-content{position:relative;z-index:2;max-width:720px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.4);border-radius:40px;padding:6px 16px;margin-bottom:1.5rem}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero-badge-text{font-family:Arial,sans-serif;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-light)}
+.hero-tag{font-family:Arial,sans-serif;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:0.75rem}
+.hero-title{font-size:clamp(2.6rem,6vw,4.8rem);line-height:1.08;color:var(--white);margin-bottom:0.5rem;font-weight:400}
+.hero-title em{color:var(--gold);font-style:normal}
+.hero-title-kopi{font-family:Arial,sans-serif;font-size:clamp(0.9rem,2vw,1.2rem);letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.55);display:block;margin-bottom:1.5rem}
+.hero-sub{font-family:Arial,sans-serif;font-size:0.95rem;color:rgba(255,255,255,0.65);line-height:1.75;max-width:480px;margin:0 auto 2.5rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--brown);padding:14px 32px;border-radius:40px;text-decoration:none;font-family:Arial,sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:0.04em;transition:all 0.2s;display:inline-block}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{border:1.5px solid rgba(255,255,255,0.4);color:var(--white);padding:14px 32px;border-radius:40px;text-decoration:none;font-family:Arial,sans-serif;font-size:0.88rem;letter-spacing:0.04em;transition:all 0.2s;display:inline-block}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.1)}
+.btn-red{background:var(--red);color:var(--white);padding:14px 32px;border-radius:40px;text-decoration:none;font-family:Arial,sans-serif;font-size:0.88rem;font-weight:600;letter-spacing:0.04em;transition:all 0.2s;display:inline-block}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,0.35);font-family:Arial,sans-serif;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:6px}
+.hero-scroll::after{content:'';display:block;width:1px;height:32px;background:rgba(255,255,255,0.25)}
+
+/* HALAL STRIP */
+.halal-strip{background:var(--green);padding:14px 5%;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.halal-item{font-family:Arial,sans-serif;font-size:0.78rem;color:rgba(255,255,255,0.9);letter-spacing:0.08em;display:flex;align-items:center;gap:6px}
+.halal-icon{font-size:1rem}
+
+/* SECTION COMMONS */
+section{padding:90px 5%}
+.section-tag{font-family:Arial,sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:0.6rem}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--brown);line-height:1.15;margin-bottom:1rem;font-weight:400}
+.section-body{font-family:Arial,sans-serif;font-size:0.92rem;color:var(--text-muted);line-height:1.8;max-width:520px}
+.divider{width:48px;height:2px;background:var(--gold);margin:1.25rem 0}
+
+/* ABOUT */
+#about{background:var(--cream)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+.about-visual{position:relative}
+.about-main-card{background:var(--red-deep);border-radius:16px;height:380px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.about-main-card-inner{text-align:center;color:var(--white);padding:2rem}
+.kopitiam-emblem{width:100px;height:100px;border-radius:50%;border:2px solid rgba(212,160,23,0.6);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1rem;background:rgba(0,0,0,0.2)}
+.kopitiam-emblem-icon{font-size:2.5rem}
+.kopitiam-emblem-text{font-family:Arial,sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.about-main-title{font-size:1.4rem;color:var(--white);margin-bottom:0.4rem}
+.about-main-sub{font-family:Arial,sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase}
+.about-corner-card{position:absolute;bottom:-24px;right:-24px;background:var(--gold);border-radius:12px;padding:1.25rem 1.5rem;box-shadow:0 8px 30px rgba(0,0,0,0.2)}
+.about-corner-num{font-size:2rem;color:var(--brown);font-weight:700;line-height:1}
+.about-corner-label{font-family:Arial,sans-serif;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--brown-mid);margin-top:4px}
+.stats-row{display:flex;gap:2.5rem;margin-top:2.5rem}
+.stat-num{font-size:2rem;color:var(--red);font-weight:400;line-height:1}
+.stat-label{font-family:Arial,sans-serif;font-size:0.72rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px}
+.since-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:40px;padding:5px 14px;margin-bottom:1rem}
+.since-tag-text{font-family:Arial,sans-serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--red)}
+
+/* FEATURES */
+#features{background:var(--red-deep);padding:80px 5%}
+#features .section-tag{color:var(--gold)}
+#features .section-title{color:var(--white)}
+.features-header{max-width:1100px;margin:0 auto 3rem}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08);max-width:1100px;margin:0 auto;border-radius:12px;overflow:hidden}
+.feature-card{background:rgba(0,0,0,0.25);padding:2.25rem 2rem;transition:background 0.25s;cursor:default}
+.feature-card:hover{background:rgba(0,0,0,0.1)}
+.f-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.f-title{font-family:Arial,sans-serif;font-size:0.92rem;font-weight:700;color:var(--white);margin-bottom:0.4rem;letter-spacing:0.02em}
+.f-desc{font-family:Arial,sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.65}
+.f-tag{display:inline-block;background:rgba(212,160,23,0.2);border:1px solid rgba(212,160,23,0.35);border-radius:20px;padding:3px 10px;font-family:Arial,sans-serif;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-light);margin-top:0.75rem}
+
+/* MENU */
+#menu{background:var(--cream-dark)}
+.menu-header{max-width:1100px;margin:0 auto}
+.menu-tabs{display:flex;gap:0.5rem;margin-top:2rem;flex-wrap:wrap}
+.menu-tab{font-family:Arial,sans-serif;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;padding:8px 20px;border-radius:40px;border:1.5px solid rgba(59,31,14,0.2);color:var(--text-muted);cursor:pointer;transition:all 0.2s;background:transparent}
+.menu-tab.active,.menu-tab:hover{background:var(--red);border-color:var(--red);color:var(--white)}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem;max-width:1100px;margin:2.5rem auto 0}
+.menu-category{background:var(--white);border-radius:14px;padding:1.75rem;border:1px solid rgba(59,31,14,0.07);box-shadow:0 2px 16px rgba(59,31,14,0.04)}
+.menu-cat-header{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(59,31,14,0.1)}
+.menu-cat-icon{font-size:1.4rem}
+.menu-cat-title{font-family:Arial,sans-serif;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--red-dark);font-weight:700}
+.menu-item{display:flex;justify-content:space-between;align-items:start;padding:0.6rem 0;border-bottom:1px dashed rgba(59,31,14,0.08)}
+.menu-item:last-child{border-bottom:none}
+.menu-item-info{flex:1}
+.menu-name{font-family:Arial,sans-serif;font-size:0.88rem;color:var(--text);font-weight:500}
+.menu-desc{font-family:Arial,sans-serif;font-size:0.72rem;color:var(--text-muted);margin-top:2px;line-height:1.4}
+.menu-price{font-family:Arial,sans-serif;font-size:0.82rem;color:var(--red);font-weight:700;white-space:nowrap;margin-left:12px;padding-top:1px}
+.menu-badge{display:inline-block;background:rgba(192,57,43,0.1);color:var(--red);font-family:Arial,sans-serif;font-size:0.6rem;letter-spacing:0.06em;text-transform:uppercase;padding:2px 7px;border-radius:20px;margin-left:6px;font-weight:600}
+
+/* ABOUT KOPITIAM CONCEPT */
+#concept{background:var(--white);padding:80px 5%}
+.concept-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;max-width:1100px;margin:0 auto;align-items:center}
+.concept-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.concept-card{border-radius:12px;padding:1.5rem;border:1px solid}
+.concept-card.c1{background:rgba(192,57,43,0.04);border-color:rgba(192,57,43,0.15)}
+.concept-card.c2{background:rgba(26,92,42,0.04);border-color:rgba(26,92,42,0.15)}
+.concept-card.c3{background:rgba(212,160,23,0.06);border-color:rgba(212,160,23,0.2);grid-column:span 2}
+.cc-icon{font-size:1.6rem;margin-bottom:0.75rem;display:block}
+.cc-title{font-family:Arial,sans-serif;font-size:0.82rem;font-weight:700;color:var(--brown);margin-bottom:0.3rem}
+.cc-text{font-family:Arial,sans-serif;font-size:0.78rem;color:var(--text-muted);line-height:1.6}
+
+/* REVIEWS */
+#reviews{background:var(--cream)}
+.reviews-header{max-width:1100px;margin:0 auto}
+.rating-hero{display:flex;align-items:center;gap:2rem;margin-top:2rem;padding:2rem;background:var(--red-deep);border-radius:14px;max-width:1100px;margin:2rem auto 0}
+.rating-big{font-size:3.5rem;color:var(--white);font-weight:400;line-height:1}
+.rating-stars{color:var(--gold);font-size:1.2rem;letter-spacing:2px;margin-bottom:0.3rem}
+.rating-count{font-family:Arial,sans-serif;font-size:0.78rem;color:rgba(255,255,255,0.5)}
+.rating-divider{width:1px;height:60px;background:rgba(255,255,255,0.15)}
+.rating-breakdown{flex:1}
+.rating-bar{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+.rb-label{font-family:Arial,sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.6);width:20px}
+.rb-track{flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden}
+.rb-fill{height:100%;background:var(--gold);border-radius:3px}
+.rb-pct{font-family:Arial,sans-serif;font-size:0.68rem;color:rgba(255,255,255,0.5);width:28px;text-align:right}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.25rem;max-width:1100px;margin:2rem auto 0}
+.review-card{background:var(--white);border-radius:12px;padding:1.75rem;border:1px solid rgba(59,31,14,0.07);box-shadow:0 2px 12px rgba(59,31,14,0.04)}
+.stars{color:var(--gold);font-size:0.9rem;letter-spacing:2px;margin-bottom:0.75rem}
+.review-text{font-family:Arial,sans-serif;font-size:0.85rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.2rem;font-style:italic}
+.reviewer{display:flex;align-items:center;gap:10px}
+.reviewer-avatar{width:36px;height:36px;border-radius:50%;background:var(--red-deep);display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:0.75rem;font-weight:700;color:var(--white)}
+.reviewer-name{font-family:Arial,sans-serif;font-size:0.82rem;font-weight:700;color:var(--brown)}
+.reviewer-platform{font-family:Arial,sans-serif;font-size:0.7rem;color:var(--text-muted)}
+
+/* LOCATION */
+#location{background:var(--red-deep);padding:80px 5%}
+#location .section-tag{color:var(--gold)}
+#location .section-title{color:var(--white)}
+.location-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;max-width:1100px;margin:3rem auto 0;align-items:start}
+.info-block{margin-bottom:2rem}
+.info-label{font-family:Arial,sans-serif;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.info-val{font-family:Arial,sans-serif;font-size:0.9rem;color:rgba(255,255,255,0.82);line-height:1.7}
+.hours-row{display:flex;justify-content:space-between;font-family:Arial,sans-serif;font-size:0.85rem;color:rgba(255,255,255,0.65);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.hours-row:last-child{border-bottom:none}
+.hours-row strong{color:rgba(255,255,255,0.9);font-weight:500}
+.open-now{display:inline-flex;align-items:center;gap:6px;background:rgba(26,92,42,0.4);border:1px solid rgba(26,92,42,0.6);border-radius:20px;padding:4px 12px;font-family:Arial,sans-serif;font-size:0.7rem;color:#5DDF7A;letter-spacing:0.06em;margin-bottom:1.5rem}
+.open-dot{width:6px;height:6px;border-radius:50%;background:#5DDF7A;animation:pulse 2s infinite}
+.map-wrap{border-radius:14px;overflow:hidden;height:420px;box-shadow:0 12px 50px rgba(0,0,0,0.4)}
+.map-wrap iframe{width:100%;height:100%;border:none;display:block}
+.location-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.75rem}
+.delivery-row{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.1)}
+.delivery-label{font-family:Arial,sans-serif;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+.delivery-btns{display:flex;gap:0.75rem;flex-wrap:wrap}
+.delivery-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:8px 16px;font-family:Arial,sans-serif;font-size:0.78rem;color:rgba(255,255,255,0.75);text-decoration:none;transition:all 0.2s}
+.delivery-btn:hover{background:rgba(255,255,255,0.15);color:var(--white)}
+
+/* FOOTER */
+footer{background:#0D0500;padding:56px 5%;text-align:center}
+.footer-logo-main{font-size:1.6rem;color:var(--white);letter-spacing:0.04em;margin-bottom:2px}
+.footer-logo-main span{color:var(--gold)}
+.footer-logo-sub{font-family:Arial,sans-serif;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem}
+.footer-tagline{font-family:Arial,sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2rem}
+.footer-links{display:flex;justify-content:center;gap:2rem;list-style:none;margin-bottom:2rem;flex-wrap:wrap}
+.footer-links a{font-family:Arial,sans-serif;font-size:0.78rem;color:rgba(255,255,255,0.4);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-social{display:flex;justify-content:center;gap:1rem;margin-bottom:2rem}
+.social-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);text-decoration:none;font-family:Arial,sans-serif;font-size:0.78rem;font-weight:700;transition:all 0.2s}
+.social-btn:hover{border-color:var(--gold);color:var(--gold)}
+.footer-copy{font-family:Arial,sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.18)}
+.footer-divider{width:60px;height:1px;background:rgba(212,160,23,0.3);margin:1.5rem auto}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .about-grid,.concept-grid,.location-grid{grid-template-columns:1fr}
+  .about-corner-card{right:0;bottom:-20px}
+  .features-grid{grid-template-columns:1fr}
+  .menu-grid{grid-template-columns:1fr}
+  .rating-hero{flex-direction:column;text-align:center}
+  .rating-divider{width:60px;height:1px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-main">Hang Tuah <span style="color:var(--gold)">Kopi</span></span>
+      <span class="nav-logo-sub">& Toastery · Dewi Sartika</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#concept">Concept</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#location" class="nav-cta">Find Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-deco"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span class="hero-badge-text">Open Now · 07:00 – 22:00</span>
+    </div>
+    <span class="hero-tag">Jl. Dewi Sartika, Cawang · Jakarta</span>
+    <h1 class="hero-title">Your Urban<br><em>Kopitiam</em></h1>
+    <span class="hero-title-kopi">Kopi & Toastery</span>
+    <p class="hero-sub">Warm toasts, pulled coffee, and the unhurried rhythm of a Singaporean kopitiam — right here in the heart of Jakarta. No Pork, No Lard. Always welcoming.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#menu">See Our Menu</a>
+      <a class="btn-outline" href="#location">Find Us</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- HALAL STRIP -->
+<div class="halal-strip">
+  <div class="halal-item"><span class="halal-icon">✓</span> No Pork, No Lard</div>
+  <div class="halal-item"><span class="halal-icon">☕</span> Modern Kopitiam Since 2016</div>
+  <div class="halal-item"><span class="halal-icon">🛵</span> Available on GoFood & GrabFood</div>
+  <div class="halal-item"><span class="halal-icon">📶</span> Free Wi-Fi</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-main-card">
+        <div class="about-main-card-inner">
+          <div class="kopitiam-emblem">
+            <span class="kopitiam-emblem-icon">☕</span>
+            <span class="kopitiam-emblem-text">Est. 2016</span>
+          </div>
+          <div class="about-main-title">Hang Tuah Kopi</div>
+          <div class="about-main-sub">Urban Kopitiam · Jakarta</div>
+          <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+            <div style="text-align:center"><div style="font-size:1.4rem;color:var(--gold)">10+</div><div style="font-family:Arial,sans-serif;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.45);margin-top:2px">Outlets</div></div>
+            <div style="width:1px;background:rgba(255,255,255,0.1)"></div>
+            <div style="text-align:center"><div style="font-size:1.4rem;color:var(--gold)">4.3★</div><div style="font-family:Arial,sans-serif;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.45);margin-top:2px">Rating</div></div>
+            <div style="width:1px;background:rgba(255,255,255,0.1)"></div>
+            <div style="text-align:center"><div style="font-size:1.4rem;color:var(--gold)">9K+</div><div style="font-family:Arial,sans-serif;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.45);margin-top:2px">Followers</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-corner-card">
+        <div class="about-corner-num">2016</div>
+        <div class="about-corner-label">Est. Jakarta</div>
+      </div>
+    </div>
+    <div>
+      <div class="since-tag"><span class="since-tag-text">Modern Living Kopitiam</span></div>
+      <span class="section-tag">Our Story</span>
+      <h2 class="section-title">The spirit of the kopitiam, reimagined</h2>
+      <div class="divider"></div>
+      <p class="section-body">Hang Tuah Kopi & Toastery was born in 2016 with a simple idea: bring the timeless warmth of the Singaporean kopitiam into modern Jakarta life. We named ourselves after the legendary Malay warrior — a symbol of loyalty, resilience, and belonging.</p>
+      <p class="section-body" style="margin-top:1rem">Our Dewi Sartika branch at Cawang carries that same spirit. Settle in for a kaya butter toast with a perfectly pulled kopi tarik, or come for a full meal of Hainanese chicken rice or laksa mee. The doors are open, every day.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-num">2016</div><div class="stat-label">Year Founded</div></div>
+        <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Locations</div></div>
+        <div class="stat"><div class="stat-num">4.3★</div><div class="stat-label">Tripadvisor</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-header">
+    <span class="section-tag">Why Hang Tuah</span>
+    <h2 class="section-title">Everything you love about a kopitiam</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="f-icon">☕</span>
+      <div class="f-title">Pulled Coffee & Teh Tarik</div>
+      <div class="f-desc">Our Kopi Tarik, Teh Tarik, and Kopi O are brewed and pulled the traditional way — bold, aromatic, perfectly balanced.</div>
+      <span class="f-tag">Signature</span>
+    </div>
+    <div class="feature-card">
+      <span class="f-icon">🍞</span>
+      <div class="f-title">Kaya Butter Toast</div>
+      <div class="f-desc">Crispy charcoal-grilled toast slathered with house-made kaya and a generous slab of butter. Jakarta's best bites — at any hour.</div>
+      <span class="f-tag">Must Try</span>
+    </div>
+    <div class="feature-card">
+      <span class="f-icon">🍜</span>
+      <div class="f-title">Peranakan Kitchen</div>
+      <div class="f-desc">Laksa Mee Seafood, Hainam Chicken Rice, Nasi Goreng Teri Medan, Chicken Chop — the full roster of Singapore-Malay favorites.</div>
+      <span class="f-tag">Full Meals</span>
+    </div>
+    <div class="feature-card">
+      <span class="f-icon">🥟</span>
+      <div class="f-title">Dimsum & Snacks</div>
+      <div class="f-desc">Hakao, Siomay Ayam, Pisang Goreng Kaya — ideal for sharing or solo snacking between meals.</div>
+      <span class="f-tag">Small Bites</span>
+    </div>
+    <div class="feature-card">
+      <span class="f-icon">📶</span>
+      <div class="f-title">Work & Linger Friendly</div>
+      <div class="f-desc">Power outlets at every table, free Wi-Fi, and an ambience that invites you to stay — whether for 30 minutes or 3 hours.</div>
+      <span class="f-tag">Work-Ready</span>
+    </div>
+    <div class="feature-card">
+      <span class="f-icon">✅</span>
+      <div class="f-title">No Pork, No Lard</div>
+      <div class="f-desc">Fully committed to our Muslim-friendly promise. Every dish and drink served at Hang Tuah is free from pork and lard.</div>
+      <span class="f-tag">Halal-Friendly</span>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="menu-header">
+    <span class="section-tag">What We Serve</span>
+    <h2 class="section-title">A menu rooted in the kopitiam tradition</h2>
+    <div class="divider"></div>
+    <p class="section-body">Affordable, honest, and deeply satisfying. Budget around Rp 50,000–100,000 per person for a full meal and drink.</p>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-category">
+      <div class="menu-cat-header">
+        <span class="menu-cat-icon">☕</span>
+        <span class="menu-cat-title">Kopi & Teh</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Kopi Tarik<span class="menu-badge">★ Best</span></div><div class="menu-desc">House-pulled kopitiam coffee, hot or iced</div></div>
+        <span class="menu-price">Rp 24K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Teh Tarik<span class="menu-badge">★ Best</span></div><div class="menu-desc">Classic pulled milk tea, sweetness just right</div></div>
+        <span class="menu-price">Rp 22K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Kopi O</div><div class="menu-desc">Black kopitiam coffee, hot or iced</div></div>
+        <span class="menu-price">Rp 20K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Es Teh Tarik Cincau</div><div class="menu-desc">Iced milk tea with grass jelly</div></div>
+        <span class="menu-price">Rp 26K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Cendol Gula Melaka</div><div class="menu-desc">Milky, pandan-fragrant cendol with palm sugar</div></div>
+        <span class="menu-price">Rp 28K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Pink Yakult / Es Limau</div><div class="menu-desc">Refreshing sweet-sour coolers</div></div>
+        <span class="menu-price">Rp 24K</span>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-header">
+        <span class="menu-cat-icon">🍞</span>
+        <span class="menu-cat-title">Toasts & Breakfast</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Traditional Kaya Butter Toast<span class="menu-badge">★ Best</span></div><div class="menu-desc">Charcoal-grilled bread, kaya jam & butter</div></div>
+        <span class="menu-price">Rp 18.5K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Soft Boiled Eggs (2 pcs)</div><div class="menu-desc">Runny, silky — a kopitiam classic</div></div>
+        <span class="menu-price">Rp 13K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Tuna Mayo Toast</div><div class="menu-desc">Creamy tuna on toasted bread</div></div>
+        <span class="menu-price">Rp 25K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Paket Breakfast Set</div><div class="menu-desc">Kaya Toast + Soft Boiled Egg + Teh/Kopi Tarik + Cendol</div></div>
+        <span class="menu-price">Rp 54K</span>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-header">
+        <span class="menu-cat-icon">🍚</span>
+        <span class="menu-cat-title">Mains & Asian Cuisine</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Hainam Chicken Rice<span class="menu-badge">★ Best</span></div><div class="menu-desc">Fragrant poached chicken over seasoned rice</div></div>
+        <span class="menu-price">Rp 45K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Laksa Mee Seafood<span class="menu-badge">★ Best</span></div><div class="menu-desc">Spiced coconut broth, noodles & fresh seafood</div></div>
+        <span class="menu-price">Rp 50K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Nasi Goreng Teri Medan</div><div class="menu-desc">Wok-fried rice with anchovies, savory & light</div></div>
+        <span class="menu-price">Rp 38K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Kari Ayam</div><div class="menu-desc">Rich, coconut-forward chicken curry</div></div>
+        <span class="menu-price">Rp 45K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Chicken Chop Rice</div><div class="menu-desc">With mushroom or black pepper sauce</div></div>
+        <span class="menu-price">Rp 48K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Kwetiau Goreng Seafood</div><div class="menu-desc">Wok flat noodles with generous seafood toppings</div></div>
+        <span class="menu-price">Rp 45K</span>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-header">
+        <span class="menu-cat-icon">🥟</span>
+        <span class="menu-cat-title">Dimsum & Snacks</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Hakao (4 pcs)</div><div class="menu-desc">Steamed shrimp dumplings</div></div>
+        <span class="menu-price">Rp 30K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Siomay Ayam</div><div class="menu-desc">Steamed chicken siomai</div></div>
+        <span class="menu-price">Rp 28K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Pisang Goreng Kaya</div><div class="menu-desc">Crispy fried banana with kaya dip</div></div>
+        <span class="menu-price">Rp 24K</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info"><div class="menu-name">Singkong Goreng</div><div class="menu-desc">Fried cassava, crispy & comforting</div></div>
+        <span class="menu-price">Rp 20K</span>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:2.5rem">
+    <a class="btn-red" href="https://gofood.co.id/jakarta/restaurant/hang-tuah-dewi-sartika-e33c3d6b-01e9-4580-aec5-8603f82cedcf" target="_blank">Order via GoFood</a>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section id="concept">
+  <div class="concept-grid">
+    <div>
+      <span class="section-tag">The Kopitiam Concept</span>
+      <h2 class="section-title">More than a café — a way of life</h2>
+      <div class="divider"></div>
+      <p class="section-body">The kopitiam — or "coffee shop" in Hokkien-Malay — has been the social heartbeat of Singapore and the Malay Peninsula for over a century. A place where dawn workers share a table with office-goers, where conversations linger as long as the kopi is hot.</p>
+      <p class="section-body" style="margin-top:1rem">Hang Tuah brings that culture to Jakarta: accessible, welcoming, unhurried. Our Modern Living Kopitiam concept honours tradition while fitting into your everyday urban rhythm — whether you're grabbing breakfast before the commute or sitting in for a long, slow lunch.</p>
+    </div>
+    <div class="concept-cards">
+      <div class="concept-card c1">
+        <span class="cc-icon">🏡</span>
+        <div class="cc-title">Indoor & Outdoor Seating</div>
+        <div class="cc-text">AC indoor zone for focused work; outdoor area for the casual smoker or fresh-air lover.</div>
+      </div>
+      <div class="concept-card c2">
+        <span class="cc-icon">🌿</span>
+        <div class="cc-title">Relaxed Atmosphere</div>
+        <div class="cc-text">Never rushed. Come for 30 minutes or three hours — you'll always feel at home.</div>
+      </div>
+      <div class="concept-card c3">
+        <span class="cc-icon">🤝</span>
+        <div class="cc-title">Community First — No Pork, No Lard, Always</div>
+        <div class="cc-text">Since day one, Hang Tuah has been committed to a fully Muslim-friendly experience. Every dish and every drink on our menu is prepared without pork or lard, so everyone is welcome at the table.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-header">
+    <span class="section-tag">What Guests Say</span>
+    <h2 class="section-title">Real tables, honest words</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="rating-hero">
+    <div style="text-align:center">
+      <div class="rating-big">4.3</div>
+      <div class="rating-stars">★★★★☆</div>
+      <div class="rating-count">Tripadvisor · Google Reviews</div>
+    </div>
+    <div class="rating-divider"></div>
+    <div class="rating-breakdown">
+      <div class="rating-bar"><span class="rb-label">5★</span><div class="rb-track"><div class="rb-fill" style="width:62%"></div></div><span class="rb-pct">62%</span></div>
+      <div class="rating-bar"><span class="rb-label">4★</span><div class="rb-track"><div class="rb-fill" style="width:22%"></div></div><span class="rb-pct">22%</span></div>
+      <div class="rating-bar"><span class="rb-label">3★</span><div class="rb-track"><div class="rb-fill" style="width:10%"></div></div><span class="rb-pct">10%</span></div>
+      <div class="rating-bar"><span class="rb-label">2★</span><div class="rb-track"><div class="rb-fill" style="width:4%"></div></div><span class="rb-pct">4%</span></div>
+      <div class="rating-bar"><span class="rb-label">1★</span><div class="rb-track"><div class="rb-fill" style="width:2%"></div></div><span class="rb-pct">2%</span></div>
+    </div>
+    <div style="color:rgba(255,255,255,0.45);font-family:Arial,sans-serif;font-size:0.8rem;text-align:center">Ranked #1,420 of 5,158<br>restaurants in Jakarta<br><span style="color:var(--gold);font-size:0.72rem">— Tripadvisor</span></div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"The Kaya Toast was so much better than expected for the price — crispy, buttery, and the kaya was just right. Teh Tarik is a must. Staff super friendly, place is cozy."</p>
+      <div class="reviewer"><div class="reviewer-avatar">RA</div><div><div class="reviewer-name">Ratu A.</div><div class="reviewer-platform">Pergi Kuliner · 2024</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Laksa Singapore-nya bikin nagih! The broth is rich and fragrant, the portions are big. Feels exactly like eating at a proper kopitiam in Singapore."</p>
+      <div class="reviewer"><div class="reviewer-avatar">DJ</div><div><div class="reviewer-name">Dika J.</div><div class="reviewer-platform">Google Maps · 2024</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Chicken Chop with mushroom sauce — the sauce was super creamy and the portion was generous. Kopi Tarik really hit differently. Service was fast and genuinely warm."</p>
+      <div class="reviewer"><div class="reviewer-avatar">MS</div><div><div class="reviewer-name">Maya S.</div><div class="reviewer-platform">Pergi Kuliner · 2023</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">"Great spot for a quick lunch before a meeting. The nasi goreng was tasty and well-portioned. Ambience is very relaxed — plug points at the tables make it a solid work stop."</p>
+      <div class="reviewer"><div class="reviewer-avatar">FH</div><div><div class="reviewer-name">Farhan H.</div><div class="reviewer-platform">Google Maps · 2023</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-tag">Find Us</span>
+    <h2 class="section-title">Come take a seat</h2>
+  </div>
+  <div class="location-grid">
+    <div>
+      <div class="open-now"><span class="open-dot"></span>Open Today</div>
+      <div class="info-block">
+        <div class="info-label">Address</div>
+        <div class="info-val">Jl. Dewi Sartika (near Cawang),<br>Jakarta Timur, DKI Jakarta</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Phone</div>
+        <div class="info-val">+62 21 452 9411</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Opening Hours</div>
+        <div class="hours-row"><strong>Every Day</strong><span>07:00 – 22:00</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Facilities</div>
+        <div class="info-val">Free Wi-Fi · Power Outlets · AC Indoor · Outdoor Area · Parking Nearby</div>
+      </div>
+      <div class="location-btns">
+        <a class="btn-primary" href="https://maps.app.goo.gl/iycADHYc5ryS9NVf8" target="_blank">Open in Maps</a>
+        <a class="btn-outline" href="https://www.instagram.com/hangtuahid/" target="_blank">@hangtuahid</a>
+      </div>
+      <div class="delivery-row">
+        <div class="delivery-label">Order for Delivery</div>
+        <div class="delivery-btns">
+          <a class="delivery-btn" href="https://gofood.co.id/jakarta/restaurant/hang-tuah-dewi-sartika-e33c3d6b-01e9-4580-aec5-8603f82cedcf" target="_blank">🛵 GoFood</a>
+          <a class="delivery-btn" href="https://grab.onelink.me/2695613898" target="_blank">🟢 GrabFood</a>
+          <a class="delivery-btn" href="https://www.instagram.com/hangtuahid/" target="_blank">📦 ShopeeFood</a>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d990.5!2d106.8670911!3d-6.2469464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f339fcdf5137%3A0xb094a3fffd30f0d5!2sHang%20Tuah%20-%20Dewi%20Sartika!5e0!3m2!1sen!2sid!4v1746800000000!5m2!1sen!2sid"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Hang Tuah Kopi & Toastery – Dewi Sartika location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- OTHER BRANCHES -->
+<div style="background:var(--dark);padding:40px 5%;text-align:center">
+  <div style="font-family:Arial,sans-serif;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">Other Jakarta Locations</div>
+  <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap">
+    <span style="font-family:Arial,sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.45)">Kelapa Gading (MOI)</span>
+    <span style="color:rgba(255,255,255,0.15)">·</span>
+    <span style="font-family:Arial,sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.45)">Pecenongan</span>
+    <span style="color:rgba(255,255,255,0.15)">·</span>
+    <span style="font-family:Arial,sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.45)">Sudirman (Chillax)</span>
+    <span style="color:rgba(255,255,255,0.15)">·</span>
+    <span style="font-family:Arial,sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.45)">Kemang</span>
+    <span style="color:rgba(255,255,255,0.15)">·</span>
+    <span style="font-family:Arial,sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.45)">Lebak Bulus (Poins Square)</span>
+    <span style="color:rgba(255,255,255,0.15)">·</span>
+    <span style="font-family:Arial,sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.45)">Tangerang</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-main">Hang Tuah <span>Kopi</span></div>
+  <div class="footer-logo-sub">& Toastery</div>
+  <div class="footer-tagline">#UrbanKopitiam · #NoPorkNoLard</div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#concept">Concept</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <div class="footer-social">
+    <a class="social-btn" href="https://www.instagram.com/hangtuahid/" target="_blank" title="Instagram">ig</a>
+    <a class="social-btn" href="https://www.facebook.com/hangtuahid/" target="_blank" title="Facebook">fb</a>
+    <a class="social-btn" href="https://gofood.co.id/jakarta/restaurant/hang-tuah-dewi-sartika-e33c3d6b-01e9-4580-aec5-8603f82cedcf" target="_blank" title="GoFood">gf</a>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">© 2026 Hang Tuah Kopi & Toastery · Dewi Sartika, Jakarta Timur</div>
+  <div class="footer-copy" style="margin-top:6px;opacity:0.5">Your Urban Kopitiam Companion · Serving you everyday</div>
+</footer>
+
+<script>
+  document.addEventListener('contextmenu',e=>e.preventDefault());
+  document.addEventListener('selectstart',e=>e.preventDefault());
+  document.addEventListener('dragstart',e=>e.preventDefault());
+  document.addEventListener('keydown',e=>{
+    const k=e.key.toLowerCase(),ctrl=e.ctrlKey||e.metaKey;
+    if(ctrl&&['u','s','a','c','x','p'].includes(k)){e.preventDefault();return false}
+    if(e.key==='F12'){e.preventDefault();return false}
+    if(ctrl&&e.shiftKey&&['i','j','c'].includes(k)){e.preventDefault();return false}
+  });
+</script>
+</body>
+</html>
